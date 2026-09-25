@@ -1,0 +1,56 @@
+# ort string ort os ort math, time
+# Треба писати: import string, os, math, time
+
+Et = 3
+3.14   #  цей рядок нічого не робить, треба присвоїти змінній, напр. pi = 3.14
+
+#  PrintTime(x):
+# функція має оголошуватись через def
+def PrintTime(x):
+    if x == True:
+        print(time.ctime())
+    return   #  було ceturn
+
+#  main (): – пробіли непотрібні
+def main():
+    #  незакриті лапки
+    Choice_mode = input("would you like to encode or decode: ")
+
+    word = input("Please enter text: ")
+
+    #  помилки у змінних: ascii_letters, punctuation
+    LETTERS = string.ascii_letters + string.punctuation + string.digits
+
+    encoded = ""
+
+    #  if Choice mode == – пробіл у назві, має бути Choice_mode
+    if Choice_mode == "encode":
+        for letter in word:
+            if letter == " ":
+                encoded = encoded + " "
+            else:
+                #  shift не визначений
+                x = LETTERS.index(letter) + shift
+                encoded = encoded + LETTERS[x]
+                y = x + 5   # y ніде не використовується
+
+    #  if Choice mode is "decode": – неправильно
+    # потрібно == замість is
+    if Choice_mode == "decode":
+        for letter in word:
+            if letter == " ":
+                encoded = encoded + " "
+            else:
+                x = LETTERS.index(letter) - shift
+                encoded = encoded + LETTERS[x]
+                y = x - 5   # теж не використовується
+
+    print(encoded)
+
+    #  print(Word) – змінна Word не існує (має бути word)
+    print(word)
+
+#  name main () == main_': – це неправильна конструкція
+# має бути:
+if name == "__main__":
+    main()

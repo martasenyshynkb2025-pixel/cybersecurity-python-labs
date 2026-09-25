@@ -1,0 +1,1 @@
+https://github.com/martasenyshynkb2025-pixel/cybersecurity-python-labs.git
