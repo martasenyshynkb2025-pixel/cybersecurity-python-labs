@@ -20,5 +20,101 @@
             "WrongPassword12345!"
         ],
         "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "forensic_lead",
+        "result": "success",
+        "timestamp": "2026-10-02 09:23:05",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "forensic_lead",
+        "result": "failure",
+        "timestamp": "2026-10-02 09:23:05",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "missing_user",
+        "result": "failure",
+        "timestamp": "2026-10-02 09:23:05",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "forensic_lead",
+        "result": "success",
+        "timestamp": "2026-10-02 09:23:19",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "forensic_lead",
+        "result": "failure",
+        "timestamp": "2026-10-02 09:23:19",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "missing_user",
+        "result": "failure",
+        "timestamp": "2026-10-02 09:23:20",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "forensic_lead",
+        "result": "success",
+        "timestamp": "2026-10-02 09:23:35",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "forensic_lead",
+        "result": "failure",
+        "timestamp": "2026-10-02 09:23:35",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "missing_user",
+        "result": "failure",
+        "timestamp": "2026-10-02 09:23:35",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "forensic_lead",
+        "result": "success",
+        "timestamp": "2026-10-02 09:27:20",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "forensic_lead",
+        "result": "failure",
+        "timestamp": "2026-10-02 09:27:20",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "missing_user",
+        "result": "failure",
+        "timestamp": "2026-10-02 09:27:20",
+        "args": [],
+        "kwargs": {}
     }
 ]
