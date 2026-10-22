@@ -1,3 +1,5 @@
+"""Task 2, Variant 5: Network Service Availability Scanner."""
+
 import argparse
 import csv
 import json
@@ -9,7 +11,6 @@ import time
 from dataclasses import dataclass
 from pathlib import Path
 
-# Налаштування логування
 logging.basicConfig(
     level=logging.INFO,
     format="[%(levelname)s] %(message)s",
@@ -29,17 +30,21 @@ class ScanResult:
 
 
 def validate_target(host: str) -> bool:
-    """Валідація IPv4 адреси або доменного імені за допомогою регулярних виразів[cite: 8]."""
+    """Валідація IPv4 адреси або доменного імені."""
     ip_pattern = r"^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
     domain_pattern = (
         r"^(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$"
     )
 
-    return bool(re.match(ip_pattern, host) or re.match(domain_pattern, host))
+    return bool(
+        re.match(ip_pattern, host)
+        or re.match(domain_pattern, host)
+        or host == "localhost"
+    )
 
 
 def check_port(host: str, port: int, timeout: float) -> ScanResult:
-    """Перевірка доступності порту хоста через socket connection[cite: 8]."""
+    """Перевірка доступності порту хоста через socket connection."""
     service_names = {
         80: "HTTP",
         443: "HTTPS",
@@ -88,7 +93,7 @@ def check_port(host: str, port: int, timeout: float) -> ScanResult:
 
 
 def run_scan(targets_file: str, timeout: float, out_csv: str, verbose: bool) -> None:
-    """Запуск аналізу доступності сервісів та експорт результатів[cite: 8]."""
+    """Запуск аналізу доступності сервісів та експорт результатів."""
     if verbose:
         logging.getLogger().setLevel(logging.DEBUG)
 
@@ -121,7 +126,7 @@ def run_scan(targets_file: str, timeout: float, out_csv: str, verbose: bool) -> 
             logging.warning(f"Пропущено некоректну ціль: {host}:{port}")
             continue
 
-        res = check_port(host, port, timeout)
+        res = check_port(host, int(port), timeout)
         results.append(res)
 
         if res.status == "ONLINE":
@@ -151,7 +156,14 @@ def run_scan(targets_file: str, timeout: float, out_csv: str, verbose: bool) -> 
     with open(out_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow(
-            ["Target Host", "Port", "Service", "Status", "Response Time (ms)", "Notes"]
+            [
+                "Target Host",
+                "Port",
+                "Service",
+                "Status",
+                "Response Time (ms)",
+                "Notes",
+            ]
         )
         for r in results:
             writer.writerow(
@@ -161,7 +173,7 @@ def run_scan(targets_file: str, timeout: float, out_csv: str, verbose: bool) -> 
     logging.info(f"\nDetailed scan report saved to {out_csv}")
 
 
-def main():
+def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(
         description="Сканер доступності мережевих сервісів та перевірка портів."
     )
@@ -187,7 +199,7 @@ def main():
         help="Детальний режим логування",
     )
 
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     run_scan(args.targets, args.timeout, args.out_csv, args.verbose)
 
 
