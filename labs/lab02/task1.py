@@ -18,7 +18,7 @@ class User:
         self.role = role
         self.active = active
         self._email = None
-        self.email = email  # Викликає сеттер для валідації
+        self.email = email
 
         self.__password_salt = os.urandom(16)
         self.__password_hash = None
